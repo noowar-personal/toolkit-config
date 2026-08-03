@@ -1,10 +1,10 @@
 # Privacy Policy — Noowar SendMagic
 
-*Last updated: 2026-06-19*
+*Last updated: 2026-08-03*
 
 ## Overview
 
-Noowar SendMagic ("the App") is a personal utility application for Android. The App reads incoming SMS messages on the user's device and forwards them to a destination specified by the user (another phone number or a Telegram bot that the user controls).
+Noowar SendMagic ("the App") is a personal utility application for Android. The App reads the notification content posted by the Samsung Messages app when an SMS arrives, and forwards matching messages to a Telegram destination specified by the user.
 
 All forwarding destinations and rules are configured solely by the user. The developer has no access to any message content or user data.
 
@@ -16,8 +16,7 @@ All forwarding destinations and rules are configured solely by the user. The dev
 
 | Data | Purpose |
 |---|---|
-| Incoming SMS messages (sender number, body) | Forwarding according to user-defined rules |
-| Notification content (Samsung Messages app) | Detecting SMS on Samsung devices where direct broadcast is restricted |
+| Notification content (sender name, message text) from the Samsung Messages app | Matching against user-defined rules and forwarding to Telegram |
 
 ---
 
@@ -31,9 +30,8 @@ All forwarding destinations and rules are configured solely by the user. The dev
 
 ## Where data goes
 
-Forwarding destinations are entirely under the user's control:
+The forwarding destination is entirely under the user's control:
 
-- **SMS forwarding**: Messages are sent via the device's own SMS function to a phone number entered by the user.
 - **Telegram forwarding**: Messages are sent to Telegram's servers. See the dedicated section below.
 
 ---
@@ -76,13 +74,9 @@ No data is uploaded to any cloud service or developer server.
 
 | Permission | Reason |
 |---|---|
-| `RECEIVE_SMS` / `READ_SMS` | Detect and read incoming SMS for forwarding |
-| `SEND_SMS` | Forward SMS to another phone number as configured by the user |
-| `BIND_NOTIFICATION_LISTENER_SERVICE` | Detect SMS on Samsung One UI devices |
-| `FOREGROUND_SERVICE` / `FOREGROUND_SERVICE_REMOTE_MESSAGING` | Keep the forwarding service running in the background |
-| `RECEIVE_BOOT_COMPLETED` | Auto-start after device reboot |
+| `BIND_NOTIFICATION_LISTENER_SERVICE` | Read Samsung Messages notification content to detect incoming SMS |
 | `INTERNET` | Send messages via Telegram Bot API |
-| `POST_NOTIFICATIONS` | Show persistent foreground service notification |
+| `POST_NOTIFICATIONS` | Show app notifications |
 
 ---
 
@@ -108,11 +102,11 @@ If you have questions about this policy, contact: **sinnsang@naver.com**
 
 # 개인정보처리방침 — Noowar SendMagic
 
-*최종 수정일: 2026-06-19*
+*최종 수정일: 2026-08-03*
 
 ## 개요
 
-Noowar SendMagic(이하 "앱")은 Android용 개인 유틸리티 앱입니다. 앱은 사용자 기기에 수신된 SMS를 사용자가 지정한 수신처(다른 전화번호 또는 사용자 본인이 관리하는 텔레그램 봇)로 전달합니다.
+Noowar SendMagic(이하 "앱")은 Android용 개인 유틸리티 앱입니다. 앱은 SMS 수신 시 삼성 메시지 앱이 표시하는 알림 내용을 읽어, 사용자가 지정한 텔레그램 수신처로 매칭된 메시지를 전달합니다.
 
 포워딩 대상과 규칙은 전적으로 사용자가 설정합니다. 개발자는 메시지 내용이나 사용자 데이터에 접근할 수 없습니다.
 
@@ -124,8 +118,7 @@ Noowar SendMagic(이하 "앱")은 Android용 개인 유틸리티 앱입니다. �
 
 | 데이터 | 목적 |
 |---|---|
-| 수신 SMS (발신번호, 본문) | 사용자 정의 규칙에 따른 포워딩 |
-| 알림 내용 (삼성 메시지 앱) | 삼성 기기에서 SMS 감지 |
+| 삼성 메시지 앱 알림 내용 (발신자 이름, 메시지 텍스트) | 사용자 정의 규칙과 대조 후 텔레그램으로 전달 |
 
 ---
 
@@ -141,7 +134,6 @@ Noowar SendMagic(이하 "앱")은 Android용 개인 유틸리티 앱입니다. �
 
 포워딩 대상은 전적으로 사용자가 결정합니다:
 
-- **SMS 포워딩**: 사용자가 입력한 전화번호로 기기의 SMS 기능을 통해 발송됩니다.
 - **텔레그램 포워딩**: 텔레그램 서버로 전송됩니다. 아래 전용 항목을 참조하세요.
 
 ---
@@ -184,13 +176,9 @@ Noowar SendMagic(이하 "앱")은 Android용 개인 유틸리티 앱입니다. �
 
 | 권한 | 사유 |
 |---|---|
-| `RECEIVE_SMS` / `READ_SMS` | 포워딩을 위한 수신 SMS 감지 및 읽기 |
-| `SEND_SMS` | 사용자가 설정한 번호로 SMS 전달 |
-| `BIND_NOTIFICATION_LISTENER_SERVICE` | 삼성 One UI 기기에서 SMS 감지 |
-| `FOREGROUND_SERVICE` / `FOREGROUND_SERVICE_REMOTE_MESSAGING` | 백그라운드에서 포워딩 서비스 유지 |
-| `RECEIVE_BOOT_COMPLETED` | 재부팅 후 자동 시작 |
+| `BIND_NOTIFICATION_LISTENER_SERVICE` | 삼성 메시지 알림 내용을 읽어 수신 SMS 감지 |
 | `INTERNET` | 텔레그램 Bot API로 메시지 전송 |
-| `POST_NOTIFICATIONS` | 포그라운드 서비스 알림 표시 |
+| `POST_NOTIFICATIONS` | 앱 알림 표시 |
 
 ---
 
