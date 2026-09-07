@@ -1,10 +1,10 @@
 # Privacy Policy — Noowar SendMagic
 
-*Last updated: 2026-09-02*
+*Last updated: 2026-09-07*
 
 ## Overview
 
-Noowar SendMagic ("the App") is a personal utility application for Android. The App reads the notification content posted by the Samsung Messages app when an SMS arrives, and forwards matching messages to a Telegram destination specified by the user.
+Noowar SendMagic ("the App") is a personal utility application for Android (and, for a subset of non-SMS features, iOS). The App reads the notification content posted by the Samsung Messages app when an SMS arrives, and forwards matching messages to a Telegram destination specified by the user. The App also includes several optional utility tools unrelated to SMS forwarding: an LED marquee display, a kaleidoscope visual toy, a QR code generator, and a device hardware self-diagnostic tool. These optional tools are described in the dedicated sections below.
 
 All forwarding destinations and rules are configured solely by the user. The developer has no access to any message content or user data.
 
@@ -42,11 +42,28 @@ The App uses **Firebase Analytics** (a Google service) to understand which featu
 
 ---
 
+## Device diagnostics tool
+
+The App includes an optional "Device Diagnostics" tool that lets the user check whether the phone's hardware (screen, touch, speaker, microphone, vibration, volume buttons, motion sensors, camera, GPS, battery, network) is working correctly. Each check runs only while the user has that specific test screen open, and none of the data below is ever stored beyond the test session or transmitted anywhere:
+
+| Data accessed | Purpose | Retention / transmission |
+|---|---|---|
+| Camera preview | Show a live camera preview so the user can visually confirm the camera works | Not saved, not transmitted; the preview only exists on screen while the test is open |
+| Microphone audio | Record a few seconds of audio and immediately play it back so the user can confirm the microphone works | The recording is deleted right after playback; never transmitted anywhere |
+| Precise/approximate location (GPS) | Fetch a single one-time location fix to confirm the GPS sensor works, shown on screen as coordinates | Not stored, not transmitted; discarded when the test screen closes |
+| Motion sensors (accelerometer, gyroscope, magnetometer) | Show live sensor values to confirm the sensors respond to movement | Not stored, not transmitted |
+| Vibration | Trigger the vibration motor briefly | No data collected |
+
+## QR code generator (in-app browser)
+
+The App includes an optional "QR Generator" tool that opens the developer's own web service (`https://makeqr.duckdns.org`) inside an in-app browser (WebView). Any data you enter there — text/URLs to encode into a QR code, an optional logo image you choose to upload, or an account you choose to log into — is sent to that web server exactly as it would be if you visited the same site in a regular mobile browser. This is separate from, and unrelated to, the SMS-forwarding data described above; it is not sent to Telegram or read from your SMS/notifications.
+
 ## Where data goes
 
 The forwarding destination is entirely under the user's control:
 
 - **Telegram forwarding**: Messages are sent to Telegram's servers. See the dedicated section below.
+- **QR code generator**: Data you choose to enter is sent to `https://makeqr.duckdns.org`, as described above.
 
 ---
 
@@ -89,8 +106,12 @@ No data is uploaded to any cloud service or developer server.
 | Permission | Reason |
 |---|---|
 | `BIND_NOTIFICATION_LISTENER_SERVICE` | Read Samsung Messages notification content to detect incoming SMS |
-| `INTERNET` | Send messages via Telegram Bot API |
+| `INTERNET` | Send messages via Telegram Bot API; load the QR generator web page |
 | `POST_NOTIFICATIONS` | Show app notifications |
+| `CAMERA` | Device Diagnostics: show a live camera preview to test the camera (see above) |
+| `RECORD_AUDIO` | Device Diagnostics: record and immediately play back a short clip to test the microphone (see above) |
+| `ACCESS_FINE_LOCATION` / `ACCESS_COARSE_LOCATION` | Device Diagnostics: fetch a one-time GPS fix to test the location sensor (see above) |
+| `VIBRATE` | Device Diagnostics: trigger the vibration motor to test it |
 
 ---
 
@@ -116,11 +137,11 @@ If you have questions about this policy, contact: **sinnsang@naver.com**
 
 # 개인정보처리방침 — Noowar SendMagic
 
-*최종 수정일: 2026-09-02*
+*최종 수정일: 2026-09-07*
 
 ## 개요
 
-Noowar SendMagic(이하 "앱")은 Android용 개인 유틸리티 앱입니다. 앱은 SMS 수신 시 삼성 메시지 앱이 표시하는 알림 내용을 읽어, 사용자가 지정한 텔레그램 수신처로 매칭된 메시지를 전달합니다.
+Noowar SendMagic(이하 "앱")은 Android용 개인 유틸리티 앱입니다(SMS 관련 기능을 제외한 일부 기능은 iOS에서도 제공됩니다). 앱은 SMS 수신 시 삼성 메시지 앱이 표시하는 알림 내용을 읽어, 사용자가 지정한 텔레그램 수신처로 매칭된 메시지를 전달합니다. 앱에는 SMS 포워딩과 무관한 선택 기능도 포함돼 있습니다: LED 전광판, 만화경 시각 토이, QR 코드 생성기, 기기 하드웨어 자가진단 도구. 이 선택 기능들은 아래 전용 항목에서 설명합니다.
 
 포워딩 대상과 규칙은 전적으로 사용자가 설정합니다. 개발자는 메시지 내용이나 사용자 데이터에 접근할 수 없습니다.
 
@@ -158,11 +179,28 @@ Noowar SendMagic(이하 "앱")은 Android용 개인 유틸리티 앱입니다. �
 
 ---
 
+## 기기 진단 도구
+
+앱에는 폰 하드웨어(화면, 터치, 스피커, 마이크, 진동, 볼륨 버튼, 모션 센서, 카메라, GPS, 배터리, 네트워크)가 정상 동작하는지 확인할 수 있는 선택 기능 "기기 진단"이 포함돼 있습니다. 각 테스트는 사용자가 해당 테스트 화면을 열어둔 동안에만 실행되며, 아래 데이터는 테스트 세션 이후 저장되거나 어디로도 전송되지 않습니다:
+
+| 접근하는 데이터 | 목적 | 보관/전송 |
+|---|---|---|
+| 카메라 미리보기 | 실시간 카메라 화면을 보여줘 사용자가 육안으로 카메라 동작을 확인 | 저장·전송 안 함; 테스트 화면이 열려있는 동안만 화면에 표시됨 |
+| 마이크 오디오 | 몇 초간 녹음 후 즉시 재생해 마이크 동작 확인 | 재생 직후 삭제; 어디로도 전송되지 않음 |
+| 위치(GPS, 정밀/대략) | 위치 센서 동작 확인을 위해 1회성 위치를 가져와 화면에 좌표로 표시 | 저장·전송 안 함; 테스트 화면을 닫으면 폐기됨 |
+| 모션 센서(가속도계, 자이로스코프, 지자기) | 센서가 움직임에 반응하는지 실시간 값으로 확인 | 저장·전송 안 함 |
+| 진동 | 진동 모터를 짧게 울림 | 수집되는 데이터 없음 |
+
+## QR 코드 생성기 (앱 내 브라우저)
+
+앱에는 개발자가 직접 운영하는 웹 서비스(`https://makeqr.duckdns.org`)를 앱 내 브라우저(WebView)로 여는 선택 기능 "QR 생성기"가 포함돼 있습니다. 여기에 입력하는 데이터(QR코드로 만들 텍스트/URL, 선택적으로 업로드하는 로고 이미지, 로그인하는 계정 정보 등)는 일반 모바일 브라우저로 같은 사이트를 방문했을 때와 동일하게 그 웹 서버로 전송됩니다. 이는 위에서 설명한 SMS 포워딩 데이터와는 완전히 별개이며 무관합니다 — 텔레그램으로 전송되지도, SMS·알림에서 읽어오지도 않습니다.
+
 ## 데이터 전송 대상
 
 포워딩 대상은 전적으로 사용자가 결정합니다:
 
 - **텔레그램 포워딩**: 텔레그램 서버로 전송됩니다. 아래 전용 항목을 참조하세요.
+- **QR 코드 생성기**: 사용자가 입력한 데이터가 위에서 설명한 대로 `https://makeqr.duckdns.org`로 전송됩니다.
 
 ---
 
@@ -205,8 +243,12 @@ Noowar SendMagic(이하 "앱")은 Android용 개인 유틸리티 앱입니다. �
 | 권한 | 사유 |
 |---|---|
 | `BIND_NOTIFICATION_LISTENER_SERVICE` | 삼성 메시지 알림 내용을 읽어 수신 SMS 감지 |
-| `INTERNET` | 텔레그램 Bot API로 메시지 전송 |
+| `INTERNET` | 텔레그램 Bot API로 메시지 전송, QR 생성기 웹페이지 로딩 |
 | `POST_NOTIFICATIONS` | 앱 알림 표시 |
+| `CAMERA` | 기기 진단: 카메라 테스트를 위한 실시간 미리보기 (위 참조) |
+| `RECORD_AUDIO` | 기기 진단: 마이크 테스트를 위한 짧은 녹음 및 즉시 재생 (위 참조) |
+| `ACCESS_FINE_LOCATION` / `ACCESS_COARSE_LOCATION` | 기기 진단: 위치 센서 테스트를 위한 1회성 GPS 조회 (위 참조) |
+| `VIBRATE` | 기기 진단: 진동 모터 테스트 |
 
 ---
 
