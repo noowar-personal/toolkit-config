@@ -1,4 +1,4 @@
-# Account & Data Deletion — Noowar SendMagic
+# Account and Data Deletion — Noowar SendMagic
 
 *Last updated: 2026-09-08*
 
